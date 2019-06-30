@@ -1,7 +1,19 @@
 .Absolute-Center {
     margin: auto;
-    position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.center-position {
+    margin: auto;
+    display: block;
+}
+
+.header-center-width {
+    width: 25%;
+}
+
+.text-center-position {
+    text-align: center;
 }
 
 .Absolute-Center.is-Responsive {
@@ -17,5 +29,9 @@
     margin-bottom: 10px;
     width:200px;
     height:30px;
-    background-image:url('http://placehold.it/200x30/000000/ffffff/&text=BRAND+LOGO');
+}
+
+.error {
+    color: red;
+
 }

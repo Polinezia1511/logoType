@@ -8,22 +8,11 @@ import java.util.Objects;
 
 @Entity
 public class User {
-    private int id;
     private String firstName;
     private String email;
     private String phone;
     private String password;
     private String lastName;
-
-    @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Basic
     @Column(name = "first_name")
@@ -35,7 +24,7 @@ public class User {
         this.firstName = firstName;
     }
 
-    @Basic
+    @Id
     @Column(name = "email")
     public String getEmail() {
         return email;
@@ -80,8 +69,7 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id &&
-                Objects.equals(firstName, user.firstName) &&
+        return Objects.equals(firstName, user.firstName) &&
                 Objects.equals(email, user.email) &&
                 Objects.equals(phone, user.phone) &&
                 Objects.equals(password, user.password) &&
@@ -90,6 +78,6 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, email, phone, password, lastName);
+        return Objects.hash(firstName, email, phone, password, lastName);
     }
 }
