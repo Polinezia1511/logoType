@@ -30,10 +30,7 @@ public class FieldsController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getFieldsPage(HttpSession httpSession, Model model) {
-        User user = (User)httpSession.getAttribute("user");
-        model.addAttribute("firstAndSecondName", userService.getFirstAndSecondName(user));
-        model.addAttribute("fields", fieldService.getAllFields());
-        model.addAttribute("fieldTypes", fieldService.getAllFieldTypes());
+        addAttributes(model, httpSession);
         return FIELDS_PAGE;
     }
 
@@ -43,9 +40,23 @@ public class FieldsController {
                            @ModelAttribute("type") String type,
                            @ModelAttribute("required") String required,
                            @ModelAttribute("isActive") String isActive,
+                           HttpSession session,
                            Model model) {
-        model.addAttribute("errorMessage","true");
-        return FIELDS_PAGE;
+        String validateResult = fieldValidator.validateFieldData(label, options, type, required, isActive);
+        if (validateResult.isEmpty()) {
+            fieldService.createField(label, options, type, required, isActive);
+        } else {
+            model.addAttribute("errorMessage",validateResult);
+        }
+        addAttributes(model, session);
+        return "redirect:/fields";
+    }
+
+    private void addAttributes(Model model, HttpSession session) {
+        User user = (User)session.getAttribute("user");
+        model.addAttribute("firstAndSecondName", userService.getFirstAndSecondName(user));
+        model.addAttribute("fields", fieldService.getAllFields());
+        model.addAttribute("fieldTypes", fieldService.getAllFieldTypes());
     }
 
 }

@@ -3,6 +3,7 @@ package by.bsuir.logotype.service.impl;
 import by.bsuir.logotype.dao.FieldDao;
 import by.bsuir.logotype.entity.Field;
 import by.bsuir.logotype.entity.FieldType;
+import by.bsuir.logotype.service.FieldOptionService;
 import by.bsuir.logotype.service.FieldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,12 +16,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class DefaultFieldService implements FieldService {
+    private static final String NO_OPTION = "";
     @Autowired
     private FieldDao fieldDao;
 
     @Override
     public List<Field> getAllFields() {
-        return new ArrayList<Field>((Collection<? extends Field>) fieldDao.findAll());
+        Iterable<Field> fields = fieldDao.findAll();
+        return new ArrayList<Field>((Collection<? extends Field>) fields);
     }
 
     @Override
@@ -38,8 +41,15 @@ public class DefaultFieldService implements FieldService {
         field.setRequired(!required.isEmpty());
         field.setIsActive(!isActive.isEmpty());
         field.setType(FieldType.valueOf(fieldType));
-        fieldDao.save(field);
 
-        return null;
+        if (field.getType().equals(FieldType.COMBOBOX) ||
+                field.getType().equals(FieldType.CHECKBOX) ||
+                field.getType().equals(FieldType.RADIO_BUTTON)) {
+            field.setFieldOption(options);
+        } else {
+            field.setFieldOption(NO_OPTION);
+        }
+        fieldDao.save(field);
+        return field;
     }
 }

@@ -20,7 +20,7 @@
         <div class="form-inline my-2 my-lg-0 inline-element">
             <ul class="navbar-nav mr-auto navbar-right">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Fields <span class="sr-only">Current</span></a>
+                    <a class="nav-link" href="./fields">Fields <span class="sr-only">Current</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Responses</a>
@@ -40,10 +40,14 @@
         </div>
     </div>
 </nav>
+<c:if test="${errorMessage != null}">
+    <div class="error">${errorMessage}</div>
+</c:if>
 <div class="content-area card">
     <div class="card-body">
         <h2 class="card-title inline-element">Fields</h2>
-        <button id="add-field" type="button" class="btn btn-primary btn-block card-title button-add-field" data-toggle="modal"
+        <button id="add-field" type="button" class="btn btn-primary btn-block card-title button-add-field"
+                data-toggle="modal"
                 data-target="#myModal"><p class="big-letter"><b>+</b></p>ADD FIELD
         </button>
         <table class="table">
@@ -57,10 +61,13 @@
             </thead>
             <tbody>
             <c:forEach var="field" items="${fields}">
-                <td>${field.label}</td>
-                <td>${field.type}</td>
-                <td>${field.required == true ? "true" : "false"}</td>
-                <td>${field.isActive == true ? "true" : "false"}</td>
+                <tr>
+                    <td>${field.label}</td>
+                    <td>${field.type}</td>
+                    <td>${field.required == true ? "true" : "false"}</td>
+                    <td>${field.isActive == true ? "true" : "false"}</td>
+
+                </tr>
             </c:forEach>
             </tbody>
         </table>
@@ -85,7 +92,8 @@
                     </div>
                     <div class="form-group">
                         <label class="inline-element">Type:</label>
-                        <select name="type" id="selectType" class="form-control inline-element element-in-pop-up"><br><br>
+                        <select name="type" id="selectType"
+                                class="form-control inline-element element-in-pop-up"><br><br>
                             <c:forEach var="fieldType" items="${fieldTypes}">
                                 <option name="${fieldType}">${fieldType}</option>
                             </c:forEach>
@@ -93,9 +101,10 @@
                     </div>
                     <br>
                     <div id="optionsField" class="form-group"><label class="inline-element">Options:</label>
-                        <textarea name="options" type="text" class="form-control inline-element element-in-pop-up"></textarea><br><br>
+                        <textarea name="options" type="text"
+                                  class="form-control inline-element element-in-pop-up"></textarea><br><br>
                     </div>
-                    <div  class="form-check">
+                    <div class="form-check">
                         <label class="form-check-label">
                             <input name="required" class="form-check-input" type="checkbox"> Required
                         </label><br>

@@ -20,7 +20,7 @@
         <div class="form-inline my-2 my-lg-0 inline-element">
             <ul class="navbar-nav mr-auto navbar-right">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Fields <span class="sr-only">Current</span></a>
+                    <a class="nav-link" href="./fields">Fields <span class="sr-only">Current</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Responses</a>

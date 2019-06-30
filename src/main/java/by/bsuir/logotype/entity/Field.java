@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class Field {
@@ -14,6 +15,7 @@ public class Field {
     private FieldType type;
     private boolean required;
     private boolean isActive;
+    private String fieldOption;
 
     @Id
     @Column(name = "id")
@@ -41,9 +43,18 @@ public class Field {
         return required;
     }
 
-
     public void setRequired(boolean required) {
         this.required = required;
+    }
+
+    @Basic
+    @Column(name = "field_option")
+    public String getFieldOption() {
+        return fieldOption;
+    }
+
+    public void setFieldOption(String fieldOption) {
+        this.fieldOption = fieldOption;
     }
 
     @Basic
@@ -63,5 +74,23 @@ public class Field {
 
     public void setType(FieldType type) {
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Field field = (Field) o;
+        return id == field.id &&
+                required == field.required &&
+                isActive == field.isActive &&
+                Objects.equals(label, field.label) &&
+                type == field.type &&
+                Objects.equals(fieldOption, field.fieldOption);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, label, type, required, isActive, fieldOption);
     }
 }
