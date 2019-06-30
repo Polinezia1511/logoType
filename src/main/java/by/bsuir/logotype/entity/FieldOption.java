@@ -10,7 +10,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "field_option", schema = "logotype", catalog = "")
-@IdClass(FieldOptionPK.class)
 public class FieldOption {
     private int id;
     private String name;
@@ -36,7 +35,7 @@ public class FieldOption {
         this.name = name;
     }
 
-    @Id
+    @Basic
     @Column(name = "field_id")
     public int getFieldId() {
         return fieldId;

@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         </div>
-        <div class="form-inline my-2 my-lg-0 right-menu">
+        <div class="form-inline my-2 my-lg-0 inline-element">
             <ul class="navbar-nav mr-auto navbar-right">
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Fields <span class="sr-only">Current</span></a>

@@ -54,10 +54,26 @@
     margin-left: auto;
 }
 
-.right-menu {
+.inline-element {
     display: inline;
 }
 
 .success {
     color: green;
+}
+
+.button-add-field {
+    width: 130px;
+    float: right;
+}
+
+.big-letter {
+    display: inline;
+    font-size: 15pt;
+}
+
+.element-in-pop-up {
+    width: 60%;
+    margin-right: 10%;
+    float: right;
 }
