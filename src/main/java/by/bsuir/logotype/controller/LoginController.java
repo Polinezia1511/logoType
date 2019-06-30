@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
     private static final String LOGIN_PAGE = "login";
     private static final String FIELDS_PAGE = "redirect:/fields";
-    public static final String INVALID_DATA_MESSAGE = "invalid data";
+    private static final String INVALID_DATA_MESSAGE = "invalid data";
 
     @Autowired
     private UserService userService;

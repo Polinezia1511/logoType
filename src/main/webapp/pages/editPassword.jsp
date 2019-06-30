@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Fields</title>
+    <title>Change password</title>
     <link href="webjars/bootstrap/4.1.1/css/bootstrap.min.css"
           rel="stylesheet">
 
@@ -40,6 +40,23 @@
         </div>
     </div>
 </nav>
-
+<article class="card-body Absolute-Center is-Responsive">
+    <div class="card">
+        <form method="post" class="card-body">
+            <h5 class="card-title">Change password</h5>
+            <input name="oldPassword" class="form-control form-group" placeholder="Old password*" type="password">
+            <input name="password" class="form-control form-group" placeholder="Password*" type="password">
+            <input name="confirmPassword" class="form-control form-group" placeholder="Confirm password*"
+                   type="password">
+            <button type="submit" class="btn btn-primary btn-block"> Edit password</button>
+        </form>
+        <c:if test="${errorMessage != null}">
+            <div class="error text-center-position">Error: ${errorMessage}</div>
+        </c:if>
+        <c:if test="${successMessage != null}">
+            <div class="success text-center-position">${successMessage}</div>
+        </c:if>
+    </div>
+</article>
 </body>
 </html>

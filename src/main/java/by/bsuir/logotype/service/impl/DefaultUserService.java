@@ -1,5 +1,6 @@
 package by.bsuir.logotype.service.impl;
 
+import by.bsuir.logotype.creator.UserCreator;
 import by.bsuir.logotype.dao.UserDao;
 import by.bsuir.logotype.entity.User;
 import by.bsuir.logotype.service.MailService;
@@ -16,20 +17,27 @@ public class DefaultUserService implements UserService {
     @Autowired
     private MailService mailService;
 
+    @Autowired
+    private UserCreator userCreator;
+
     @Override
-    public User createUser(String email, String password, String firstName, String secondName, String phone) {
-        User user = new User();
-        user.setEmail(email);
+    public User createUser(String mail, String password, String firstName, String secondName, String phone) {
+        User user = userCreator.createUserWithoutPassword(mail, firstName, secondName, phone);
         user.setPassword(DigestUtils.md5DigestAsHex(password.getBytes()));
-        user.setFirstName(firstName);
-        user.setLastName(secondName);
-        user.setPhone(phone);
 
         userDao.save(user);
-
-        mailService.sendRegistrationMessage(user);
+        mailService.sendRegistrationMessage(mail, password);
 
         return user;
+    }
+
+    @Override
+    public String getFirstAndSecondName(User user) {
+        StringBuilder firstAndSecondName = new StringBuilder(user.getFirstName());
+        if (user.getLastName() != null) {
+            firstAndSecondName.append(" ").append(user.getLastName());
+        }
+        return String.valueOf(firstAndSecondName);
     }
 
     @Override
@@ -40,6 +48,25 @@ public class DefaultUserService implements UserService {
                 user = null;
             }
         }
+        return user;
+    }
+
+    @Override
+    public User updateUser(String oldMail, String newMail, String firstName, String secondName, String phone) {
+        User oldUser = userDao.findOne(oldMail);
+        userDao.delete(oldUser);
+        User newUser = userCreator.createUserWithoutPassword(newMail, firstName, secondName, phone);
+        newUser.setPassword(oldUser.getPassword());
+        userDao.save(newUser);
+        return newUser;
+    }
+
+    @Override
+    public User updatePassword(String mail, String password) {
+        User user = userDao.findOne(mail);
+        user.setPassword(DigestUtils.md5DigestAsHex(password.getBytes()));
+        userDao.save(user);
+        mailService.sendEditPasswordMessage(mail, password);
         return user;
     }
 }

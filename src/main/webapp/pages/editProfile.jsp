@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Fields</title>
+    <title>Edit profile</title>
     <link href="webjars/bootstrap/4.1.1/css/bootstrap.min.css"
           rel="stylesheet">
 
@@ -40,6 +40,26 @@
         </div>
     </div>
 </nav>
-
+<article class="card-body Absolute-Center is-Responsive">
+    <div class="card">
+        <form method="post" class="card-body">
+            <h5 class="card-title">Edit profile</h5>
+            <input name="email" class="form-control form-group" placeholder="Email*" type="email" value="${email}">
+            <input name="firstName" class="form-control form-group" placeholder="First name" type="text"
+                   value="${firstName}">
+            <input name="secondName" class="form-control form-group" placeholder="Second name" type="text"
+                   value="${secondName}">
+            <input name="phoneNumber" class="form-control form-group" placeholder="Phone number" type="text"
+                   value="${phoneNumber}">
+            <button type="submit" class="btn btn-primary btn-block"> Edit profile</button>
+        </form>
+        <c:if test="${errorMessage != null}">
+            <div class="error text-center-position">Error: ${errorMessage}</div>
+        </c:if>
+        <c:if test="${successMessage != null}">
+            <div class="success text-center-position">${successMessage}</div>
+        </c:if>
+    </div>
+</article>
 </body>
 </html>

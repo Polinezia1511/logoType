@@ -14,13 +14,25 @@ public class DefaultMailService implements MailService {
     private static final String senderEmail = "p.z_1995@mail.ru";
     private static final String senderPassword = "HiDoggi95";
     private static final String REGISTRATION_MESSAGE = "<h2>LogoType</h2><div>Sign up successfully, password=%s</div>";
+    private static final String EDIT_PASSWORD_MESSAGE = "<h2>LogoType</h2><div>Edit password successfully, new password=%s</div>";
     private static final String SIGN_UP_TITLE = "Logo type sign up";
+    private static final String EDIT_PASSWORD_TITLE = "Logo type edit password";
 
     @Override
-    public void sendRegistrationMessage(User user) {
+    public void sendRegistrationMessage(String mail, String password) {
         try {
-            String message = String.format(REGISTRATION_MESSAGE, user.getPassword());
-            sendAsHtml(user.getEmail(), SIGN_UP_TITLE, message);
+            String message = String.format(REGISTRATION_MESSAGE, password);
+            sendAsHtml(mail, SIGN_UP_TITLE, message);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void sendEditPasswordMessage(String mail, String password) {
+        try {
+            String message = String.format(EDIT_PASSWORD_MESSAGE, password);
+            sendAsHtml(mail, EDIT_PASSWORD_TITLE, message);
         } catch (MessagingException e) {
             e.printStackTrace();
         }

@@ -31,7 +31,33 @@
     height:30px;
 }
 
+.logo-in-header {
+    width: 160px;
+    height: 20px;
+    display: inline;
+    position: absolute;
+    margin-top: 12px;
+}
+
 .error {
     color: red;
 
+}
+
+.navbar-right {
+    float: right;
+}
+
+.content-area {
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.right-menu {
+    display: inline;
+}
+
+.success {
+    color: green;
 }
