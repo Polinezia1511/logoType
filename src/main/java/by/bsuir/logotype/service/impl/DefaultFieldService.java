@@ -52,4 +52,9 @@ public class DefaultFieldService implements FieldService {
         fieldDao.save(field);
         return field;
     }
+
+    @Override
+    public List<Field> getAllActiveField() {
+        return fieldDao.findAllByIsActiveIsTrue();
+    }
 }

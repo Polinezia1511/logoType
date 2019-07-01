@@ -14,4 +14,6 @@ public interface FieldService {
                       String fieldType,
                       String required,
                       String isActive);
+
+    List<Field> getAllActiveField();
 }

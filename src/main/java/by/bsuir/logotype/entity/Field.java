@@ -93,4 +93,16 @@ public class Field {
     public int hashCode() {
         return Objects.hash(id, label, type, required, isActive, fieldOption);
     }
+
+    @Override
+    public String toString() {
+        return "Field{" +
+                "id=" + id +
+                ", label='" + label + '\'' +
+                ", type=" + type +
+                ", required=" + required +
+                ", isActive=" + isActive +
+                ", fieldOption='" + fieldOption + '\'' +
+                '}';
+    }
 }

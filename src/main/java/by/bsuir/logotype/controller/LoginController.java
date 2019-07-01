@@ -20,11 +20,6 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/")
-    public String home() {
-        return "redirect:/login";
-    }
-
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLoginPage(Model model) {
         return LOGIN_PAGE;

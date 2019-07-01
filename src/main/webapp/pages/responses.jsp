@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Fields</title>
+    <title>Responses</title>
     <link href="webjars/bootstrap/4.1.1/css/bootstrap.min.css"
           rel="stylesheet">
     <script type="text/javascript" src="webjars/jquery/1.9.1/jquery.js"></script>

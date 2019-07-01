@@ -13,7 +13,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="content-area">
-        <img class="logo-in-header" src="../img/logo.png"/>
+        <a href="./fields"><img class="logo-in-header" src="../img/logo.png"/></a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         </div>
